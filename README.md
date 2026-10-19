@@ -7,6 +7,8 @@ Zero-dependency Node (18+) site. Download is gated server-side: `/download` need
 2. Put your installer at `downloads/Notepad.dmg` (never served statically).
 3. Run `npm start` → http://localhost:3000. Node.js 18 or newer is required.
 
+`npm run build` performs JavaScript syntax checks; this zero-dependency app does not require a compilation step. This also supports hosts that run a build command before startup.
+
 ## GoDaddy Node.js deployment
 Use a GoDaddy hosting plan that supports Node.js applications (for example, cPanel Setup Node.js App). Set the application root to the directory containing `package.json`, choose `server.js` as the startup file, and use Node.js 18 or newer. Install dependencies with `npm install` and start/restart the app with `npm start`.
 
