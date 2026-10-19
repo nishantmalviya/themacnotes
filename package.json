@@ -1,0 +1,15 @@
+{
+  "name": "notepad-macos-sales-site",
+  "version": "1.0.0",
+  "description": "Sales website and download server for Notepad for macOS",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": ">=18"
+  }
+}
