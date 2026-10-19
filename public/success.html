@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Thank you — Notepad</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<div class="wrap hero">
+  <h1>Verifying payment…</h1>
+  <p id="p">Please wait.</p>
+  <a class="btn disabled" id="dl">Download</a>
+</div>
+<script>
+(async () => {
+  const id = new URLSearchParams(location.search).get('session_id');
+  const h = document.querySelector('h1'), p = document.getElementById('p'), dl = document.getElementById('dl');
+  try {
+    const r = await fetch('/api/stripe/verify?session_id=' + encodeURIComponent(id));
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.error);
+    localStorage.setItem('dl_token', d.token);
+    h.textContent = 'Thank you! 🎉'; p.textContent = 'Your payment was received.';
+    dl.classList.remove('disabled'); dl.href = '/download?token=' + encodeURIComponent(d.token);
+    dl.textContent = '⬇ Download Notepad for macOS';
+  } catch (e) {
+    h.textContent = 'Payment not verified'; p.textContent = e.message || 'Something went wrong.';
+  }
+})();
+</script>
+</body>
+</html>
