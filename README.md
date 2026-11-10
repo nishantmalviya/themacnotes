@@ -1,6 +1,6 @@
 # Notepad for macOS — sales site
 
-Zero-dependency Node (18+) site. Download is gated server-side: `/download` needs a signed token issued only after a verified $19.99 USD payment (Stripe Checkout for cards, PayPal Orders API).
+Zero-dependency Node (18+) site. Download is gated server-side: `/download` needs a signed token issued only after a verified $5.00 USD payment (Stripe Checkout for cards, PayPal Orders API).
 
 ## Setup
 1. `cp .env.example .env` and fill in Stripe / PayPal keys (use test/sandbox first). Set `BASE_URL` to your public URL and `TOKEN_SECRET` to a random string.

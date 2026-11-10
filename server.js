@@ -25,8 +25,8 @@ const {
 
 // Demo mode: only when no payment keys are set AND the site runs on localhost
 const DEMO = !STRIPE_SECRET_KEY && !(PAYPAL_CLIENT_ID && PAYPAL_SECRET) && /^https?:\/\/(localhost|127\.0\.0\.1)(:|\/|$)/.test(BASE_URL);
-const PRICE_CENTS = 1999;
-const PRICE = '19.99';
+const PRICE_CENTS = 500;
+const PRICE = '5.00';
 const TOKEN_TTL_MS = 24 * 3600 * 1000;
 const PAYPAL_API = PAYPAL_ENV === 'live' ? 'https://api-m.paypal.com' : 'https://api-m.sandbox.paypal.com';
 const PUBLIC = path.join(__dirname, 'public');
