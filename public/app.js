@@ -23,6 +23,9 @@ async function post(url, body) {
 
   const cfg = await (await fetch('/api/config')).json();
 
+  const support = $('support-note');
+  if (support && cfg.supportEmail) support.innerHTML = `Questions or issues? <a href="mailto:${cfg.supportEmail}">${cfg.supportEmail}</a>`;
+
   if (cfg.stripe) {
     $('card').hidden = false;
     $('card').onclick = async () => {
