@@ -10,7 +10,9 @@ try {
     const m = line.match(/^\s*([A-Z_]+)\s*=\s*(.*?)\s*$/);
     if (m && !(m[1] in process.env)) process.env[m[1]] = m[2];
   }
-} catch {}
+} catch (e) {
+  console.warn(`[env] .env file not found or not readable: ${e.message}`);
+}
 
 const {
   PORT = 3000,
@@ -22,6 +24,9 @@ const {
   DOWNLOAD_FILE = 'downloads/Notepad.dmg',
   TOKEN_SECRET = crypto.randomBytes(32).toString('hex'),
 } = process.env;
+
+const missingEnv = ['STRIPE_SECRET_KEY', 'PAYPAL_CLIENT_ID', 'PAYPAL_SECRET'].filter((k) => !process.env[k]);
+if (missingEnv.length) console.warn(`[env] Missing environment variables: ${missingEnv.join(', ')}`);
 
 // Demo mode: only when no payment keys are set AND the site runs on localhost
 const DEMO = !STRIPE_SECRET_KEY && !(PAYPAL_CLIENT_ID && PAYPAL_SECRET) && /^https?:\/\/(localhost|127\.0\.0\.1)(:|\/|$)/.test(BASE_URL);
