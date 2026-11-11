@@ -33,6 +33,7 @@ const DEMO = !STRIPE_SECRET_KEY && !(PAYPAL_CLIENT_ID && PAYPAL_SECRET) && /^htt
 const PRICE_CENTS = 500;
 const PRICE = '5.00';
 const SUPPORT_EMAIL = 'support@themacnotes.com';
+const ORIGINAL_PRICE = '49.99';
 const TOKEN_TTL_MS = 24 * 3600 * 1000;
 const PAYPAL_API = PAYPAL_ENV === 'live' ? 'https://api-m.paypal.com' : 'https://api-m.sandbox.paypal.com';
 const PUBLIC = path.join(__dirname, 'public');
@@ -97,6 +98,7 @@ async function handleApi(req, res, url) {
     if (route === 'GET /api/config') {
       return json(res, 200, {
         price: PRICE,
+        originalPrice: ORIGINAL_PRICE,
         demo: DEMO,
         stripe: !!STRIPE_SECRET_KEY,
         paypalClientId: PAYPAL_CLIENT_ID && PAYPAL_SECRET ? PAYPAL_CLIENT_ID : null,

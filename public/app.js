@@ -26,6 +26,13 @@ async function post(url, body) {
   const support = $('support-note');
   if (support && cfg.supportEmail) support.innerHTML = `Questions or issues? <a href="mailto:${cfg.supportEmail}">${cfg.supportEmail}</a>`;
 
+  const priceEl = $('price');
+  const origEl = $('original-price');
+  const price = cfg.price || '5.00';
+  const original = cfg.originalPrice || '49.99';
+  if (priceEl) priceEl.innerHTML = `${price}<span> USD</span>`;
+  if (origEl) origEl.innerHTML = `Regularly <s>${original}</s> <span>Save $${(parseFloat(original) - parseFloat(price)).toFixed(2)}</span>`;
+
   if (cfg.stripe) {
     $('card').hidden = false;
     $('card').onclick = async () => {
