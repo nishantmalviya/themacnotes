@@ -176,6 +176,19 @@ async function handleApi(req, res, url) {
 http.createServer((req, res) => {
   const url = new URL(req.url, BASE_URL);
   if (url.pathname.startsWith('/api/') || url.pathname === '/download') return handleApi(req, res, url);
+  if (/^\/products\/[^/]+\/?$/.test(url.pathname)) {
+    const slug = decodeURIComponent(url.pathname.split('/')[2] || '');
+    const page = slug === 'notepad'
+      ? null
+      : `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>API Studio — TheMacNotes</title></head><body><main style="max-width:720px;margin:80px auto;padding:0 24px;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif"><h1>API Studio</h1><p>The API Studio product portal is coming soon.</p><p><a href="/">Back to Notepad</a></p></main></body></html>`;
+    if (page) { res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' }); return res.end(page); }
+    fs.readFile(path.join(PUBLIC, 'index.html'), (err, data) => {
+      if (err) { res.writeHead(404); return res.end('Not found'); }
+      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+      res.end(data);
+    });
+    return;
+  }
   const rel = url.pathname === '/' ? 'index.html' : decodeURIComponent(url.pathname);
   const file = path.join(PUBLIC, path.normalize(rel));
   if (!file.startsWith(PUBLIC + path.sep)) { res.writeHead(403); return res.end(); }
