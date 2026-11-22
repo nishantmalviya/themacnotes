@@ -33,6 +33,17 @@ async function post(url, body) {
   if (priceEl) priceEl.innerHTML = `${price}<span> USD</span>`;
   if (origEl) origEl.innerHTML = `Regularly <s>${original}</s> <span>Save $${(parseFloat(original) - parseFloat(price)).toFixed(2)}</span>`;
 
+  const grid = $('product-grid');
+  if (grid && cfg.products && cfg.products.length) {
+    grid.innerHTML = cfg.products.map((p) => `
+      <a class="product-card" href="/products/${p.slug}">
+        <span class="product-card-eyebrow">${p.eyebrow}</span>
+        <h3>${p.name}</h3>
+        <p class="product-card-tagline">${p.tagline}</p>
+        <span class="button ${p.slug === 'notepad' ? 'button-primary' : 'button-secondary'}">View product &amp; buy</span>
+      </a>`).join('');
+  }
+
   if (cfg.stripe) {
     $('card').hidden = false;
     $('card').onclick = async () => {

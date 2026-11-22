@@ -34,6 +34,10 @@ if (missingEnv.length) console.warn(`[env] Missing environment variables: ${miss
 const DEMO = !STRIPE_SECRET_KEY && !(PAYPAL_CLIENT_ID && PAYPAL_SECRET) && /^https?:\/\/(localhost|127\.0\.0\.1)(:|\/|$)/.test(BASE_URL);
 const PRICE_CENTS = Math.round(parseFloat(PRICE) * 100);
 const SUPPORT_EMAIL = 'support@themacnotes.com';
+const PRODUCTS = [
+  { slug: 'notepad', name: 'Notepad for Mac', tagline: 'A capable text and code editor for macOS.', eyebrow: 'Editor' },
+  { slug: 'api-studio', name: 'API Studio', tagline: 'API testing and debugging client.', eyebrow: 'Developer' },
+];
 const TOKEN_TTL_MS = 24 * 3600 * 1000;
 const PAYPAL_API = PAYPAL_ENV === 'live' ? 'https://api-m.paypal.com' : 'https://api-m.sandbox.paypal.com';
 const PUBLIC = path.join(__dirname, 'public');
@@ -103,6 +107,7 @@ async function handleApi(req, res, url) {
         stripe: !!STRIPE_SECRET_KEY,
         paypalClientId: PAYPAL_CLIENT_ID && PAYPAL_SECRET ? PAYPAL_CLIENT_ID : null,
         supportEmail: SUPPORT_EMAIL,
+        products: PRODUCTS,
       });
     }
     if (route === 'POST /api/demo/pay') {
