@@ -321,6 +321,11 @@ button { font: inherit; }
 .product-card h3 { margin: 0; font-size: 24px; letter-spacing: -.04em; }
 .product-card-tagline { margin: 0 0 10px; color: var(--muted); font-size: 14px; line-height: 1.6; }
 .product-card .button { align-self: flex-start; margin-top: auto; }
+.short-description { max-width: 720px; margin: 30px auto 0; padding: 30px 34px; border: 1px solid var(--line); border-radius: 18px; background: var(--white); text-align: center; }
+.short-description p { margin: 0 0 14px; color: var(--muted); font-size: 13px; line-height: 1.7; }
+.short-description p:last-child { margin-bottom: 0; }
+.short-description em { color: #505b70; font-style: normal; font-weight: 600; }
+.short-description strong { color: var(--ink); font-size: 14px; }
 @media (max-width: 620px) { .product-grid { grid-template-columns: 1fr; } }
 
 .closing-cta {
