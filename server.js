@@ -194,7 +194,7 @@ http.createServer((req, res) => {
     });
     return;
   }
-  const rel = url.pathname === '/' ? 'index.html' : decodeURIComponent(url.pathname);
+  const rel = url.pathname === '/' ? 'home.html' : decodeURIComponent(url.pathname);
   const file = path.join(PUBLIC, path.normalize(rel));
   if (!file.startsWith(PUBLIC + path.sep)) { res.writeHead(403); return res.end(); }
   fs.readFile(file, (err, data) => {
