@@ -197,6 +197,7 @@ button { font: inherit; }
 }
 
 .section { width: min(var(--max-width), calc(100% - 64px)); margin: 0 auto; }
+#description { padding: 108px 0 40px; }
 .features { padding: 108px 0 102px; }
 .section-heading { max-width: 640px; margin: 0 auto 40px; text-align: center; }
 .section-heading .eyebrow { margin-bottom: 12px; }
@@ -370,6 +371,7 @@ button { font: inherit; }
   .value-strip { margin-top: 26px; padding: 15px 10px; gap: 13px 8px; }
   .value-strip > div { justify-content: flex-start; font-size: 10px; }
   .value-icon { width: 24px; height: 24px; flex-basis: 24px; font-size: 12px; }
+  #description { padding: 75px 0 24px; }
   .features { padding: 75px 0 74px; }
   .section-heading { margin-bottom: 27px; }
   .section-heading h2, .pricing-copy h2 { font-size: 38px; }

@@ -65,9 +65,10 @@ async function post(url, body) {
     document.head.appendChild(s);
   }
 
-  if (cfg.demo) {
-    $('demo').hidden = false;
-    $('demo').onclick = async () => {
+  const demo = $('demo');
+  if (cfg.demo && demo) {
+    demo.hidden = false;
+    demo.onclick = async () => {
       try { unlock((await post('/api/demo/pay')).token); msg(''); } catch (e) { msg(e.message); }
     };
     msg('Demo mode (no payment keys configured).');
